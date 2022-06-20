@@ -287,7 +287,6 @@ def main(_user, _passwd, _step):
     response = requests.post(url, data=data, headers=head, proxies = proxies).json()
     # print(response)
     result = f"{_user[:4]}****{_user[-4:]}: [{now}] modify step({_step})" + response['message']
-    print(result)
     return result
 
 
@@ -481,7 +480,7 @@ class ToPush:
 
     @staticmethod
     def no_push():
-        print('no push')
+        print(f"[{now}] run success")
 
 
 if __name__ == "__main__":
@@ -506,7 +505,6 @@ if __name__ == "__main__":
         for user, passwd in zip(user_list, passwd_list):
             if len(setp_array) == 2:
                 step = str(random.randint(int(setp_array[0]), int(setp_array[1])))
-                print(f"random step ({setp_array[0]}-{setp_array[1]})")
             elif str(step) == '0':
                 step = ''
             to_push.push_msg += main(user, passwd, step) + '\n'
