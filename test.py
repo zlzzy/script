@@ -1,3 +1,3 @@
 import os
-os.getenv('test')
-print('hello world')
+
+print(os.getenv('test'))
