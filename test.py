@@ -287,6 +287,7 @@ def main(_user, _passwd, _step):
     response = requests.post(url, data=data, headers=head, proxies = proxies).json()
     # print(response)
     result = f"{_user[:4]}****{_user[-4:]}: [{now}] modify step({_step})" + response['message']
+    print(result)
     return result
 
 
