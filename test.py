@@ -10,8 +10,8 @@ from urllib.parse import quote
 import requests
 
 proxies = {
-  'http': 'http://localhost:7890',
-  'https': 'http://localhost:7890',
+  'http': 'http://10.10.90.55:7890',
+  'https': 'http://10.10.90.55:7890',
 }
 
 now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
