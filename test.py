@@ -527,4 +527,4 @@ if __name__ == "__main__":
         else:
             print('count error')
     except:
-         os.putenv('runerror', '1')
+         print(os.putenv('runerror', '1'))
