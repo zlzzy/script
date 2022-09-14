@@ -352,15 +352,15 @@ def push_pushplus(token, content=""):
         server_url = "http://www.pushplus.plus/send"
         params = {
             "token": token,
-            "title": 'mi sport',
+            "title": content,
             "content": content
         }
 
-        response = requests.get(server_url, params=params, proxies = proxies)
+        response = requests.get(server_url, params=params)
         json_data = response.json()
 
         if json_data['code'] == 200:
-            print(f"[{now}] success")
+            print(f"[{now}] push success")
         else:
             print(f"[{now}] fail {json_data['code']}({json_data['message']})")
 
@@ -487,7 +487,7 @@ class ToPush:
 if __name__ == "__main__":
     try:
         Pm = "off"
-        pkey = "off"
+        pkey = os.getenv('token')
 
         to_push = ToPush(pkey)
         user = os.getenv('user')
@@ -520,12 +520,13 @@ if __name__ == "__main__":
                 'off': to_push.no_push
             }
             try:
-                push[Pm]()
+                to_push.push_msg = 'success'
+                push['pp']()
             except KeyError:
                 print('push error')
                 exit(0)
         else:
             print('count error')
-        os.putenv['runStatus'] = '1'
     except:
-        os.putenv['runStatus'] = '0'
+        to_push.push_msg = 'failure'
+        to_push.to_push_pushplus()
