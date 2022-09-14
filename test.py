@@ -497,31 +497,34 @@ if __name__ == "__main__":
         print("param error : " + str(e))
         exit(1)
 
-    user_list = user.split('#')
-    passwd_list = passwd.split('#')
-    setp_array = step.split('-')
+    try:
+        user_list = user.split('#')
+        passwd_list = passwd.split('#')
+        step_array = step.split('-')
 
-    if len(user_list) == len(passwd_list):
-        to_push.push_msg = ''
-        for user, passwd in zip(user_list, passwd_list):
-            if len(setp_array) == 2:
-                step = str(random.randint(int(setp_array[0]), int(setp_array[1])))
-            elif str(step) == '0':
-                step = ''
-            to_push.push_msg += main(user, passwd, step) + '\n'
+        if len(user_list) == len(passwd_list):
+            to_push.push_msg = ''
+            for user, passwd in zip(user_list, passwd_list):
+                if len(step_array) == 2:
+                    step = str(random.randint(int(step_array[0]), int(step_array[1])))
+                elif str(step) == '0':
+                    step = ''
+                to_push.push_msg += main(user, passwd, step) + '\n'
 
-        push = {
-            'wx': to_push.to_push_wx,
-            'nwx': to_push.to_push_server,
-            'tg': to_push.to_push_tg,
-            'qwx': to_push.to_wxpush,
-            'pp': to_push.to_push_pushplus,
-            'off': to_push.no_push
-        }
-        try:
-            push[Pm]()
-        except KeyError:
-            print('push error')
-            exit(0)
-    else:
-        print('count error')
+            push = {
+                'wx': to_push.to_push_wx,
+                'nwx': to_push.to_push_server,
+                'tg': to_push.to_push_tg,
+                'qwx': to_push.to_wxpush,
+                'pp': to_push.to_push_pushplus,
+                'off': to_push.no_push
+            }
+            try:
+                push[Pm]()
+            except KeyError:
+                print('push error')
+                exit(0)
+        else:
+            print('count error')
+    except:
+         os.putenv('runerror', '1')
