@@ -526,6 +526,6 @@ if __name__ == "__main__":
                 exit(0)
         else:
             print('count error')
-        os.environ['runStatus'] = 1
+        os.environ['runStatus'] = '1'
     except:
-        os.environ['runStatus'] = 0
+        os.environ['runStatus'] = '0'
