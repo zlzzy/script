@@ -487,7 +487,7 @@ class ToPush:
 if __name__ == "__main__":
     try:
         Pm = "off"
-        pkey = os.getenv('token')
+        pkey = os.getenv('ppToken')
 
         to_push = ToPush(pkey)
         user = os.getenv('user')
